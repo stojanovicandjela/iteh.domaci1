@@ -1,3 +1,23 @@
+<?php
+
+require 'dbBroker.php';
+require 'model/coach.php';
+require 'model/client.php';
+
+session_start();
+
+if(empty($_SESSION['coach']) || $_SESSION['coach'] == ''){
+	header("Location: login.php");
+	die();
+}
+
+$result = Client::getAll($_SESSION['coach'], $conn);
+
+if(!$result){
+	echo "Error";
+}
+
+?>
 
 <!doctype html>
 <html lang="en">
@@ -21,7 +41,7 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-5">
-					<h2 class="heading-section" style="color: white;">Welcome someone</h2>
+					<h2 class="heading-section" style="color: white;">Welcome <?php echo $_SESSION['coach']?></h2>
 				</div>
 			</div>
 			<div class="row">
@@ -33,13 +53,25 @@
 						      <th>ID no.</th>
 						      <th>First Name</th>
 						      <th>Last Name</th>
-                                <th>Age</th>
-                                <th>Weight</th>
-                                <th></th>
+                  <th>Age</th>
+                  <th>Weight</th>
+                  <th></th>
 						    </tr>
 						  </thead>
 						  <tbody class="tableBody">
-
+              <?php
+								while($row = $result->fetch_array()){
+							?>
+						    <tr id = '<?php echo $row['clientId']?>'>
+						      <th scope="row"><?php echo $row['clientId']?></th>
+						      <td><?php echo $row['name']?></td>
+						      <td><?php echo $row['lastName']?></td>
+						      <td><?php echo $row['age']?></td>
+							  <td><?php echo $row['weight']?></td>
+							  <td><input class = 'radio' type="radio" name = "izaberi" value=<?php echo $row["clientId"] ?>></td>
+						    </tr>
+							<?php }
+							?>
 						  </tbody>
 						</table>
                        
@@ -64,7 +96,7 @@
        
 	</section>
 
-   <a><button style="position: absolute; top: 10px; right: 10px; cursor: pointer; width: 10%; height: 5%; color: black;">Logout</button></a> 
+   <a href="logout.php"><button style="position: absolute; top: 10px; right: 10px; cursor: pointer; width: 10%; height: 5%; color: black;">Logout</button></a> 
 
     
     <div id="myModal" class="modal fade" role="dialog">

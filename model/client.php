@@ -19,6 +19,11 @@ class Client{
         $this->coachId = $coachId;
     }
 
+    public static function getAll($coachUserName, mysqli $conn){
+        $q = "SELECT * FROM client WHERE coachId = (SELECT coachId FROM coach where userName = '$coachUserName')";
+        return $conn->query($q);
+    }
+
 }
 
 ?>
