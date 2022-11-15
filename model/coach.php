@@ -14,6 +14,25 @@ class Coach{
         $this->password = $password;
         $this->email = $email;
     }
+
+
+    public static function logIn($userName, $pass, mysqli $conn){
+        $q = "select * from coach where userName= '$userName' and pass ='$pass' limit 1;";
+        return $conn->query($q);
+    }
+
+    public static function check($userName, $conn){
+        $q = "select * from coach where userName= '$userName'";
+        return $conn->query($q);
+    }
+
+    public static function add($userName, $email, $pass, mysqli $conn)
+    {
+        $q = "INSERT INTO coach(userName, email, pass) VALUES('$userName', '$email', '$pass')";
+        return $conn->query($q);
+    }
+
+
 }
 
 ?>

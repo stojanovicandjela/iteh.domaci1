@@ -1,4 +1,29 @@
 
+<?php
+
+require 'dbBroker.php';
+require 'model/coach.php';
+
+if(isset($_POST['submit'])){
+
+	$userName = $_POST['userName'];
+	$email = $_POST['email'];
+	$pass = $_POST['password'];
+	$pass1 = $_POST['password1'];
+	
+	$result = Coach::check($userName, $conn);
+
+	if(mysqli_num_rows($result) != 0){
+		echo '<script type="text/javascript">alert("Korisnicko ime je zauzeto!")</script>';
+	}else {
+		Coach::add($userName, $email, $pass, $conn);
+		echo '<script type="text/javascript">alert("Uspesno ste se registrovali!")</script>';
+		header("Location: login.php");
+	}
+
+}
+
+?>
 
 <!DOCTYPE html>
 <html>

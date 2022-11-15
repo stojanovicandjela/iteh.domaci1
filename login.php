@@ -1,3 +1,30 @@
+<?php
+
+require 'dbBroker.php';
+require 'model/coach.php';
+
+session_start();
+
+if(isset($_POST['submit'])){
+
+	$userName = $_POST['userName'];
+	$pass = $_POST['pass'];
+
+	$result = Coach::logIn($userName, $pass, $conn);
+
+	if($result->num_rows != 0){
+
+		echo '<script type="text/javascript">alert("Uspesno ste se prijavili")</script>';
+		$_SESSION['coach'] = $userName;
+		header("Location: home.php");
+		exit();	
+		
+	}else{
+		echo '<script type="text/javascript">alert("Netacna lozinka ili korisnicko ime")</script>';
+	}
+
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
