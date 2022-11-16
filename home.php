@@ -88,9 +88,9 @@ if(!$result){
 		</div>
         <div style="display: block; margin-top: 100px; align-items: center;">
         <button style="width: 60%; height: 20%; cursor: pointer; border-radius: 30px; color: black;" data-toggle="modal" data-target="#myModal">Add new client</button>
-        <button style="width: 60%; height: 20%; cursor: pointer; border-radius: 30px; color: black;">Sort by client's name</button>
+        <button onclick="sort()" style="width: 60%; height: 20%; cursor: pointer; border-radius: 30px; color: black;">Sort by client's name</button>
         <br>
-        <button style="width: 60%; height: 20%; cursor: pointer; border-radius: 30px; color: black;">Find by client's name</button>
+        <button onclick="search()" style="width: 60%; height: 20%; cursor: pointer; border-radius: 30px; color: black;">Find by client's name</button>
         <br>
         <input id = "myInput" type="text" style="border-radius: 30px; width: 60%; height: 15%;">
         <br>

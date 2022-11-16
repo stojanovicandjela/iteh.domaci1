@@ -35,6 +35,16 @@ class Client{
         return $conn->query($q);
     }
 
+    public static function getByName($name, $coachId, mysqli $conn){
+        $q = "SELECT * FROM client where name = '$name' and coachId = $coachId";
+        return $conn->query($q);
+    }
+
+    public static function sortByName($coachId, mysqli $conn){
+        $q = "SELECT * FROM client where coachId = $coachId ORDER BY name";
+        return $conn->query($q);
+    }
+
 }
 
 ?>

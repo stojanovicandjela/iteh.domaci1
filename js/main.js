@@ -59,3 +59,89 @@ function append(){
     })
 
 }
+
+
+function search(){
+
+    event.preventDefault();
+
+    let coachId = $('#id')[0].value;
+
+    let text = $('#myInput')[0].value;
+
+    if(text == ""){
+        alert("Fill in client's name")
+        return
+    }
+
+    $('.tableBody').empty()
+    $('#myInput').val("")
+
+
+    $.post("handler/getByName.php", "name=" + text + "&coachId=" + coachId, function (data) {
+        let array = data.split("}")
+        array.pop()
+        array.forEach(element => {
+            element = element + "}"
+            let obj = JSON.parse(element)
+
+            $('.tableBody').append(`
+            <tr id = '${obj.clientId}'>
+			    <th scope="row">${obj.clientId}</th>
+			    <td>${obj.name}</td>
+			    <td>${obj.lastName}</td>
+			    <td>${obj.age}</td>
+			    <td>${obj.weight}</td>
+			    <td><input type="radio" name = "izaberi" value=${obj.clientId}></td>
+		    </tr>
+        `)
+
+        });
+    })
+
+}
+
+function sort(){
+
+    event.preventDefault();
+
+    let coachId = $('#id')[0].value;
+
+    $('.tableBody').empty()
+
+
+    $.post("handler/sortByName.php", "coachId=" + coachId, function (data) {
+        let array = data.split("}")
+        array.pop()
+        array.forEach(element => {
+            element = element + "}"
+            let obj = JSON.parse(element)
+
+            $('.tableBody').append(`
+            <tr id = '${obj.clientId}'>
+			    <th scope="row">${obj.clientId}</th>
+			    <td>${obj.name}</td>
+			    <td>${obj.lastName}</td>
+			    <td>${obj.age}</td>
+			    <td>${obj.weight}</td>
+			    <td><input class = 'radio' type="radio" name = "izaberi" value=${obj.clientId}></td>
+		    </tr>
+        `)
+
+        });
+    })
+
+}
+
+function getRadioValue() {
+
+    var buttons = $('.tableBody .radio')
+
+    for (i = 0; i < buttons.length; i++) {
+        if (buttons[i].checked) {
+            return buttons[i].value
+        }
+    }
+    return 0
+
+}
