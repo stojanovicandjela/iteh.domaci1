@@ -96,7 +96,7 @@ if(!$result){
         <br>
         <button onclick="deleteClient()" style="width: 60%; height: 20%; cursor: pointer; border-radius: 30px; color: black;">Delete client</button>
         <br>
-        <button style="width: 60%; height: 20%; cursor: pointer; border-radius: 30px; color: black;">Show all</button>
+        <button onclick="showAll()" style="width: 60%; height: 20%; cursor: pointer; border-radius: 30px; color: black;">Show all</button>
       </div>
        
 	</section>

@@ -178,3 +178,36 @@ function deleteClient(){
     }) 
 
 }
+
+function showAll(){
+
+    event.preventDefault();
+
+    $('.tableBody').empty()
+    let userName = $('h2')[0].textContent.split(" ")
+    
+   
+    $.post("handler/getAll.php", "userName=" + userName[1],function (data) {
+        
+        let array = data.split("}")
+        array.pop()
+        
+        array.forEach(element => {
+            element = element + "}"
+            let obj = JSON.parse(element)
+
+            $('.tableBody').append(`
+            <tr id = '${obj.clientId}'>
+			    <th scope="row">${obj.clientId}</th>
+			    <td>${obj.name}</td>
+			    <td>${obj.lastName}</td>
+			    <td>${obj.age}</td>
+			    <td>${obj.weight}</td>
+			    <td><input class = 'radio' type="radio" name = "izaberi" value=${obj.clientId}></td>
+		    </tr>
+        `)
+
+        });
+    })
+
+}
