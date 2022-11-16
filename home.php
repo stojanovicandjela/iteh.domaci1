@@ -94,7 +94,7 @@ if(!$result){
         <br>
         <input id = "myInput" type="text" style="border-radius: 30px; width: 60%; height: 15%;">
         <br>
-        <button style="width: 60%; height: 20%; cursor: pointer; border-radius: 30px; color: black;">Delete client</button>
+        <button onclick="deleteClient()" style="width: 60%; height: 20%; cursor: pointer; border-radius: 30px; color: black;">Delete client</button>
         <br>
         <button style="width: 60%; height: 20%; cursor: pointer; border-radius: 30px; color: black;">Show all</button>
       </div>

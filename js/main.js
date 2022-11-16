@@ -145,3 +145,36 @@ function getRadioValue() {
     return 0
 
 }
+
+function deleteClient(){
+
+    event.preventDefault();
+
+    let clientId = getRadioValue();
+
+    if(clientId == 0){
+        alert("Choose some client");
+        return;
+    }
+
+    request = $.ajax({
+        url: "handler/deleteClient.php",
+        type: "post",
+        data: "clientId=" + clientId 
+    });
+
+
+    request.done(function (response, textStatus, jqXHR) {
+        if (response === "Success") {
+            alert("Client is deleted");
+            $(`#${clientId}`).remove()
+        } else {
+            alert("Client is not deleted")
+        }
+    })
+
+    request.fail(function (jqXHR, textStatus, errorThrown) {
+        console.log("Error: " + textStatus, errorThrown)
+    }) 
+
+}

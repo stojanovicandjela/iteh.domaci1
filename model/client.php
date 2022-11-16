@@ -45,6 +45,11 @@ class Client{
         return $conn->query($q);
     }
 
+    public static function deleteById($clientId, mysqli $conn){
+        $q = "DELETE FROM client WHERE clientId=$clientId";
+        return $conn->query($q);
+    }
+
 }
 
 ?>
