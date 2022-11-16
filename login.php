@@ -11,6 +11,7 @@ if(isset($_POST['submit'])){
 	$pass = $_POST['pass'];
 
 	$result = Coach::logIn($userName, $pass, $conn);
+  
 
 	if($result->num_rows != 0){
 

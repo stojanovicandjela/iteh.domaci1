@@ -24,6 +24,17 @@ class Client{
         return $conn->query($q);
     }
 
+    public static function add($name, $lastName, $age, $weight, $coachId, mysqli $conn){
+        $q = "INSERT INTO `client` (`name`, `lastName`, `age`, `weight`, `coachId`) VALUES ('$name', '$lastName', '$age', '$weight', '$coachId');";
+        return $conn->query($q);
+    }
+
+    public static function getLastClient(mysqli $conn)
+    {
+        $q = "SELECT * FROM client ORDER BY clientId DESC LIMIT 1";
+        return $conn->query($q);
+    }
+
 }
 
 ?>

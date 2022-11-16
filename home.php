@@ -12,6 +12,11 @@ if(empty($_SESSION['coach']) || $_SESSION['coach'] == ''){
 }
 
 $result = Client::getAll($_SESSION['coach'], $conn);
+$id = Coach::getCoachId($_SESSION['coach'], $conn);
+
+$row1 = $id->fetch_array();
+
+$coachId = $row1['coachId'];
 
 if(!$result){
 	echo "Error";
@@ -133,7 +138,7 @@ if(!$result){
   </div>
 </div>
 
-  <input id = "id" style="opacity: 0;" type="text">
+  <input id = "id" style="opacity: 0;" type="text" value="<?php echo $coachId?>">
 
 	<script src="js/jquery.min.js"></script>
   <script src="js/popper.js"></script>

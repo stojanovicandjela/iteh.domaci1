@@ -15,6 +15,10 @@ class Coach{
         $this->email = $email;
     }
 
+    public static function getCoachId($userName, mysqli $conn){
+        $q = "select coachId from coach where userName= '$userName'";
+        return $conn->query($q);
+    }
 
     public static function logIn($userName, $pass, mysqli $conn){
         $q = "select * from coach where userName= '$userName' and pass ='$pass' limit 1;";
