@@ -21,10 +21,10 @@ $("#add").submit(function(){
     request.done(function (response, textStatus, jqXHR) {
 
         if (response === "Success") {
-            alert("Client is added")
+            alert("Klijent je dodat")
             append();
         } else {
-            alert("Client is not adeed")
+            alert("Klijent nije dodat")
         }
     })
 
@@ -70,7 +70,7 @@ function search(){
     let text = $('#myInput')[0].value;
 
     if(text == ""){
-        alert("Fill in client's name")
+        alert("Niste popunili polje za pretragu")
         return
     }
 
@@ -153,7 +153,7 @@ function deleteClient(){
     let clientId = getRadioValue();
 
     if(clientId == 0){
-        alert("Choose some client");
+        alert("Niste odabrali klijenta");
         return;
     }
 
@@ -166,10 +166,10 @@ function deleteClient(){
 
     request.done(function (response, textStatus, jqXHR) {
         if (response === "Success") {
-            alert("Client is deleted");
+            alert("Klijent je obrisan");
             $(`#${clientId}`).remove()
         } else {
-            alert("Client is not deleted")
+            alert("Klijent nije obrisan")
         }
     })
 
